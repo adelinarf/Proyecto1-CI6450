@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://b308ngvr7qpbg"]
+
+[ext_resource type="Script" path="res://kinematic_flee.gd" id="1_uw22t"]
+[ext_resource type="PackedScene" uid="uid://m5umky4rracn" path="res://scenes/background.tscn" id="2_tnc56"]
+[ext_resource type="PackedScene" uid="uid://yv7e7vu2h13t" path="res://scenes/character.tscn" id="2_yyyde"]
+[ext_resource type="PackedScene" uid="uid://dgkimfs7fad4j" path="res://scenes/playerkinematic.tscn" id="3_hn8ht"]
+
+[node name="kinematic_flee" type="Node2D"]
+script = ExtResource("1_uw22t")
+
+[node name="Background" parent="." instance=ExtResource("2_tnc56")]
+position = Vector2(2, -1)
+
+[node name="Character" parent="." instance=ExtResource("2_yyyde")]
+position = Vector2(543, 209)
+kinematic = true
+
+[node name="Player" parent="." instance=ExtResource("3_hn8ht")]
+position = Vector2(436, 178)

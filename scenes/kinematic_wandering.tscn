@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7saxqg7s2w6g"]
+
+[ext_resource type="PackedScene" uid="uid://yv7e7vu2h13t" path="res://scenes/character.tscn" id="1_fm8dv"]
+[ext_resource type="Script" path="res://scenes/kinematic_wandering.gd" id="1_k37nw"]
+[ext_resource type="PackedScene" uid="uid://m5umky4rracn" path="res://scenes/background.tscn" id="2_rjikk"]
+
+[node name="kinematic_wandering" type="Node2D"]
+script = ExtResource("1_k37nw")
+
+[node name="Background" parent="." instance=ExtResource("2_rjikk")]
+position = Vector2(1, 0)
+
+[node name="Character" parent="." instance=ExtResource("1_fm8dv")]
+position = Vector2(684, 378)
+kinematic = true
+
+[node name="Character2" parent="." instance=ExtResource("1_fm8dv")]
+position = Vector2(552, 248)
+kinematic = true
+
+[node name="Character3" parent="." instance=ExtResource("1_fm8dv")]
+position = Vector2(341, 429)
+kinematic = true

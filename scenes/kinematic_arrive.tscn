@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0oixk3c5y808"]
+
+[ext_resource type="PackedScene" uid="uid://dgkimfs7fad4j" path="res://scenes/playerkinematic.tscn" id="1_28e0k"]
+[ext_resource type="Script" path="res://scenes/kinematic_arrive.gd" id="1_d0mxw"]
+[ext_resource type="PackedScene" uid="uid://yv7e7vu2h13t" path="res://scenes/character.tscn" id="2_yfj10"]
+[ext_resource type="PackedScene" uid="uid://m5umky4rracn" path="res://scenes/background.tscn" id="3_b2p4c"]
+
+[node name="kinematic_arrive" type="Node2D"]
+script = ExtResource("1_d0mxw")
+
+[node name="Background" parent="." instance=ExtResource("3_b2p4c")]
+position = Vector2(1, -1)
+
+[node name="Player" parent="." instance=ExtResource("1_28e0k")]
+position = Vector2(380, 159)
+
+[node name="Character" parent="." instance=ExtResource("2_yfj10")]
+position = Vector2(149, 326)
+kinematic = true

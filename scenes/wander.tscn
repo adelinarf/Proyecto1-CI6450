@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://vldg513mleep"]
+
+[ext_resource type="PackedScene" uid="uid://dgkimfs7fad4j" path="res://scenes/playerkinematic.tscn" id="1_1f308"]
+[ext_resource type="Script" path="res://scenes/dynamicwander.gd" id="1_k1oij"]
+[ext_resource type="PackedScene" uid="uid://yv7e7vu2h13t" path="res://scenes/character.tscn" id="2_r3ued"]
+[ext_resource type="PackedScene" uid="uid://m5umky4rracn" path="res://scenes/background.tscn" id="2_rwmvs"]
+
+[node name="wander" type="Node2D"]
+script = ExtResource("1_k1oij")
+
+[node name="Background" parent="." instance=ExtResource("2_rwmvs")]
+position = Vector2(-2, 0)
+
+[node name="Player" parent="." instance=ExtResource("1_1f308")]
+position = Vector2(523, 355)
+
+[node name="Character" parent="." instance=ExtResource("2_r3ued")]
+position = Vector2(978, 171)
+
+[node name="Character5" parent="." instance=ExtResource("2_r3ued")]
+position = Vector2(141, 302)
+
+[node name="Character4" parent="." instance=ExtResource("2_r3ued")]
+position = Vector2(714, 410)
+
+[node name="Character3" parent="." instance=ExtResource("2_r3ued")]
+position = Vector2(285, 176)
+
+[node name="Character2" parent="." instance=ExtResource("2_r3ued")]
+position = Vector2(740, 178)

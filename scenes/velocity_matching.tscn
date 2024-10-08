@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://nj1j406tbcp6"]
+
+[ext_resource type="Script" path="res://scenes/velocity_matching.gd" id="1_0f53i"]
+[ext_resource type="PackedScene" uid="uid://dgkimfs7fad4j" path="res://scenes/playerkinematic.tscn" id="1_65ngx"]
+[ext_resource type="PackedScene" uid="uid://m5umky4rracn" path="res://scenes/background.tscn" id="2_1rprs"]
+[ext_resource type="PackedScene" uid="uid://yv7e7vu2h13t" path="res://scenes/character.tscn" id="2_4fww1"]
+
+[node name="velocity_matching" type="Node2D"]
+script = ExtResource("1_0f53i")
+
+[node name="Background" parent="." instance=ExtResource("2_1rprs")]
+
+[node name="Player" parent="." instance=ExtResource("1_65ngx")]
+position = Vector2(191, 115)
+
+[node name="Character" parent="." instance=ExtResource("2_4fww1")]
+position = Vector2(446, 281)

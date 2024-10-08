@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq1wo74eco8xd"]
+
+[ext_resource type="Script" path="res://scenes/pursueandevade.gd" id="1_bibqs"]
+[ext_resource type="PackedScene" uid="uid://m5umky4rracn" path="res://scenes/background.tscn" id="2_vtm0l"]
+[ext_resource type="PackedScene" uid="uid://dgkimfs7fad4j" path="res://scenes/playerkinematic.tscn" id="3_nkf4t"]
+[ext_resource type="PackedScene" uid="uid://yv7e7vu2h13t" path="res://scenes/character.tscn" id="4_7mp7g"]
+
+[node name="pursue_and_evade" type="Node2D"]
+script = ExtResource("1_bibqs")
+
+[node name="Background" parent="." instance=ExtResource("2_vtm0l")]
+
+[node name="Player" parent="." instance=ExtResource("3_nkf4t")]
+position = Vector2(318, 173)
+
+[node name="Character" parent="." instance=ExtResource("4_7mp7g")]
+position = Vector2(531, 240)
+
+[node name="Character2" parent="." instance=ExtResource("4_7mp7g")]
+position = Vector2(531, 240)

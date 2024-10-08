@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgqaw4105ipc5"]
+
+[ext_resource type="Script" path="res://scenes/collision_avoidance.gd" id="1_dg0lu"]
+[ext_resource type="PackedScene" uid="uid://m5umky4rracn" path="res://scenes/background.tscn" id="1_x56hs"]
+[ext_resource type="PackedScene" uid="uid://dgkimfs7fad4j" path="res://scenes/playerkinematic.tscn" id="2_r1knh"]
+[ext_resource type="PackedScene" uid="uid://yv7e7vu2h13t" path="res://scenes/character.tscn" id="3_glv6s"]
+
+[node name="collision_avoidance" type="Node2D"]
+script = ExtResource("1_dg0lu")
+
+[node name="Background" parent="." instance=ExtResource("1_x56hs")]
+position = Vector2(0, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_r1knh")]
+position = Vector2(479, 329)
+
+[node name="Character" parent="." instance=ExtResource("3_glv6s")]
+position = Vector2(335, 163)
+
+[node name="Character2" parent="." instance=ExtResource("3_glv6s")]
+position = Vector2(546, 277)
+
+[node name="Character3" parent="." instance=ExtResource("3_glv6s")]
+position = Vector2(565, 309)
+
+[node name="Character4" parent="." instance=ExtResource("3_glv6s")]
+position = Vector2(227, 455)
+
+[node name="Character5" parent="." instance=ExtResource("3_glv6s")]
+position = Vector2(1004, 298)
+
+[node name="Character6" parent="." instance=ExtResource("3_glv6s")]
+position = Vector2(597, 347)
+
+[node name="Character7" parent="." instance=ExtResource("3_glv6s")]
+position = Vector2(738, 111)
+
+[node name="Character8" parent="." instance=ExtResource("3_glv6s")]
+position = Vector2(982, 176)
+
+[node name="Character9" parent="." instance=ExtResource("3_glv6s")]
+position = Vector2(616, 283)
+
+[node name="Character10" parent="." instance=ExtResource("3_glv6s")]
+position = Vector2(640, 333)

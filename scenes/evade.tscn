@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://pqwbirf52fqe"]
+
+[ext_resource type="Script" path="res://scenes/evade.gd" id="1_4mcak"]
+[ext_resource type="PackedScene" uid="uid://dgkimfs7fad4j" path="res://scenes/playerkinematic.tscn" id="1_urjcj"]
+[ext_resource type="PackedScene" uid="uid://m5umky4rracn" path="res://scenes/background.tscn" id="2_7qnfp"]
+[ext_resource type="PackedScene" uid="uid://yv7e7vu2h13t" path="res://scenes/character.tscn" id="2_28r8p"]
+
+[node name="evade" type="Node2D"]
+script = ExtResource("1_4mcak")
+
+[node name="Background" parent="." instance=ExtResource("2_7qnfp")]
+position = Vector2(0, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_urjcj")]
+position = Vector2(161, 126)
+
+[node name="Character" parent="." instance=ExtResource("2_28r8p")]
+position = Vector2(443, 246)

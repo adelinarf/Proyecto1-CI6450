@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1pblwxngr3fh"]
+
+[ext_resource type="PackedScene" uid="uid://dgkimfs7fad4j" path="res://scenes/playerkinematic.tscn" id="1_gqci1"]
+[ext_resource type="Script" path="res://scenes/face.gd" id="1_t71uk"]
+[ext_resource type="PackedScene" uid="uid://yv7e7vu2h13t" path="res://scenes/character.tscn" id="2_mkat8"]
+[ext_resource type="PackedScene" uid="uid://m5umky4rracn" path="res://scenes/background.tscn" id="2_nshoc"]
+
+[node name="Face" type="Node2D"]
+script = ExtResource("1_t71uk")
+
+[node name="Background" parent="." instance=ExtResource("2_nshoc")]
+position = Vector2(0, -3)
+
+[node name="Player" parent="." instance=ExtResource("1_gqci1")]
+position = Vector2(550, 275)
+
+[node name="Character" parent="." instance=ExtResource("2_mkat8")]
+position = Vector2(837, 201)
+time = 0.0
+
+[node name="Character2" parent="." instance=ExtResource("2_mkat8")]
+position = Vector2(724, 426)
+time = 0.0
+
+[node name="Character3" parent="." instance=ExtResource("2_mkat8")]
+position = Vector2(488, 488)
+time = 0.0
+
+[node name="Character4" parent="." instance=ExtResource("2_mkat8")]
+position = Vector2(261, 362)
+time = 0.0
+
+[node name="Character5" parent="." instance=ExtResource("2_mkat8")]
+position = Vector2(287, 145)
+time = 0.0

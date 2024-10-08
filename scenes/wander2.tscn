@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw3afhvdbdpw3"]
+
+[ext_resource type="Script" path="res://scenes/wander_2.gd" id="1_mqbrg"]
+[ext_resource type="PackedScene" uid="uid://d11u6gmr6cr4o" path="res://scenes/background2.tscn" id="2_po5ia"]
+[ext_resource type="PackedScene" uid="uid://dgkimfs7fad4j" path="res://scenes/playerkinematic.tscn" id="3_1ok1v"]
+[ext_resource type="PackedScene" uid="uid://yv7e7vu2h13t" path="res://scenes/character.tscn" id="4_f4c56"]
+
+[node name="wander" type="Node2D"]
+script = ExtResource("1_mqbrg")
+
+[node name="background" parent="." instance=ExtResource("2_po5ia")]
+position = Vector2(-1397, -1537)
+
+[node name="Player" parent="." instance=ExtResource("3_1ok1v")]
+position = Vector2(523, 355)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="menu" type="Button" parent="Player"]
+offset_left = 485.0
+offset_top = -318.0
+offset_right = 573.0
+offset_bottom = -280.0
+text = "Menu"
+
+[node name="Character" parent="." instance=ExtResource("4_f4c56")]
+position = Vector2(978, 171)
+
+[node name="Character5" parent="." instance=ExtResource("4_f4c56")]
+position = Vector2(141, 302)
+
+[node name="Character4" parent="." instance=ExtResource("4_f4c56")]
+position = Vector2(714, 410)
+
+[node name="Character3" parent="." instance=ExtResource("4_f4c56")]
+position = Vector2(285, 176)
+
+[node name="Character2" parent="." instance=ExtResource("4_f4c56")]
+position = Vector2(740, 178)
+
+[connection signal="pressed" from="Player/menu" to="." method="_on_menu_pressed"]

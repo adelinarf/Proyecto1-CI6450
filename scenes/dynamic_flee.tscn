@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq6mnyo6ssntr"]
+
+[ext_resource type="Script" path="res://scenes/dynamic_flee.gd" id="1_kgvnp"]
+[ext_resource type="PackedScene" uid="uid://yv7e7vu2h13t" path="res://scenes/character.tscn" id="2_ixxmx"]
+[ext_resource type="PackedScene" uid="uid://m5umky4rracn" path="res://scenes/background.tscn" id="2_wa55l"]
+[ext_resource type="PackedScene" uid="uid://dgkimfs7fad4j" path="res://scenes/playerkinematic.tscn" id="3_iogrl"]
+
+[node name="dynamic_flee" type="Node2D"]
+script = ExtResource("1_kgvnp")
+
+[node name="Background" parent="." instance=ExtResource("2_wa55l")]
+position = Vector2(-1, 0)
+
+[node name="Character" parent="." instance=ExtResource("2_ixxmx")]
+position = Vector2(306, 289)
+
+[node name="Player" parent="." instance=ExtResource("3_iogrl")]
+position = Vector2(679, 277)
