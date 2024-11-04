@@ -171,3 +171,27 @@ func change_target_pos(v : Vector2) -> void:
 func change_circle_pos(v : Vector2, radius : float) -> void:
 	$circle/Sprite2D.draw_circle(v,radius,'#ffff')
 	$circle.global_position = v
+
+@export var Hammer : PackedScene
+
+func detectCollisionCharacter(char,layer):
+	var detector = CollisionDetector.new(layer)
+	var ray = char.velocity
+	ray.normalized()
+	ray *= 1
+	var collision = detector.getCollision2(char.global_position, ray)
+	#print(collision.position)
+	if collision.position != Vector2.ZERO:
+		return [true,collision.position]
+	return [false,null]
+
+
+func throw(dir : Vector2, rot):
+	var hammer = Hammer.instantiate()
+	#hammer.steering = steering.lineal
+	add_child(hammer)
+	hammer.steering.lineal = steering.lineal
+	hammer.steering.angular = steering.angular
+	
+	hammer.transform = $Marker2D.transform
+	return hammer

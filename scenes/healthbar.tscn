@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://di0dgacrbi5co"]
+
+[ext_resource type="Texture2D" uid="uid://bfxkgr07oteh2" path="res://sprites/background/healthbarUnder.png" id="1_fvlmm"]
+[ext_resource type="Script" path="res://scenes/healthbar.gd" id="1_o6xj2"]
+[ext_resource type="Texture2D" uid="uid://cb8icoc0em6vi" path="res://sprites/background/healthbarProgress.png" id="2_nxh3s"]
+
+[node name="Healthbar" type="CanvasLayer"]
+script = ExtResource("1_o6xj2")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 936.0
+offset_top = 9.0
+offset_right = 1145.0
+offset_bottom = 50.0
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_fvlmm")
+texture_progress = ExtResource("2_nxh3s")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 724.0
+offset_top = 8.0
+offset_right = 924.0
+offset_bottom = 48.0
+text = "SCORE"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 944.0
+offset_top = 56.0
+offset_right = 1144.0
+offset_bottom = 96.0
+text = "SCORE"

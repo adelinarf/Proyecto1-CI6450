@@ -20,3 +20,16 @@ func getSteering() -> SteeringOutput:
 	result.lineal *= maxAcceleration #DYNAMIC FLEE CON -MAXACCELERATION
 	result.angular = 0
 	return result  
+
+func getSteering2(finalPosition) -> SteeringOutput:
+	var result = SteeringOutput.new(Vector2(0.0,0.0),0.0)
+	# Get the direction to the target.
+	# Change to character.position - target.position
+	# for flee
+	result.lineal = finalPosition - character._position()
+
+	# Give full acceleration along this direction.
+	result.lineal.normalized()
+	result.lineal *= maxAcceleration #DYNAMIC FLEE CON -MAXACCELERATION
+	result.angular = 0
+	return result  

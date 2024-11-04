@@ -3,6 +3,11 @@ extends CharacterBody2D
 var orientation : float = 0.0
 const SPEED = 10.0
 const JUMP_VELOCITY = -400.0
+signal healthChanged
+signal scoreChanged
+var currentHealth = 100
+var score = 0
+var maxHealth = 100
 
 func update(linear : Vector2, angular: float, time: float) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")
@@ -90,3 +95,21 @@ func _position() -> Vector2:
 	
 func _orientation() -> float:
 	return orientation
+
+func damaged() -> void:
+	currentHealth -= 5
+	healthChanged.emit()
+	
+func recover(value : int = 5) -> void:
+	if value == 5:
+		currentHealth += value
+		score += value
+		scoreChanged.emit()
+		healthChanged.emit()
+	else:
+		currentHealth += value
+		healthChanged.emit()
+	
+	
+	
+	

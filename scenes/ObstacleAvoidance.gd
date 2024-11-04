@@ -15,11 +15,11 @@ var lookahead: float = 10.0
 var nodes
 var sprite
 
-func _init(character: CharacterBody2D, target, nodes,sprite) -> void:
+func _init(character: CharacterBody2D, target, nodes) -> void:
 	super(character,target)
 	self.nodes = nodes
 	detector = CollisionDetector.new(nodes)
-	self.sprite=sprite
+	#self.sprite=sprite
 	
 func getSteering() -> SteeringOutput:
  # 1. Calculate the target to delegate to seek
@@ -29,14 +29,14 @@ func getSteering() -> SteeringOutput:
 	ray *= lookahead
 	
 	character.arrow_position(ray)
-
+	print(detector.nodes,"STEER")
 	 # Find the collision
 	var collision = detector.getCollision(character.position, ray)
 
 	 # If have no collision, do nothing.
 	if collision.position == Vector2.ZERO:
 		return SteeringOutput.new(Vector2(0.0,0.0),0.0)	
-	sprite.position = collision.position
+	#sprite.position = collision.position
 	 # 2. Otherwise create a target and delegate to seek.
 	#var new = collision.position + collision.normal * avoidDistance
 	#new = Vector2.UP

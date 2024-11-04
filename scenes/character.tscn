@@ -244,3 +244,6 @@ position = Vector2(0.499962, 2.50003)
 rotation = 0.0418879
 scale = Vector2(0.380208, 0.338542)
 texture = ExtResource("4_c8bxb")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(13, -4)
