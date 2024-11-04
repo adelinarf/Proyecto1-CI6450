@@ -17,3 +17,5 @@ Al presionar la tecla s se pueden diferenciar los personajes con un color asocia
 Para conocer los colores asociados a los estados y los colores de cada máquina o árbol de decisión, presionar la tecla l para visualizar la leyenda de los colores.
 
 Es posible activar y desactivar el grafo visual (nodos y aristas) con ayuda de la tecla enter.
+
+#### La segunda entrega se encuentra en la escena path_finding_visibility_graph.tscn, para correr la implementación se debe correr esta escena
