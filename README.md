@@ -58,7 +58,7 @@ Para esta entrega se agregaron diversas funcionalidades con los siguientes boton
 
 	S : Diferencia los personajes segun la leyenda por la máquina de estado utilizada por cada uno
 
-	D : Activa o desactiva la capacidad de morir
+	D : Activa o desactiva la capacidad de morir, si está activada el jugador muere si su salud es menor a 0, sino sigue el juego.
 
 	1,2,3,4,5 - Muestra solo el personaje asociado a cada número (según la máquina de estado que usa) 
 	y las líneas de su pathfinding (El personaje 5 solo hace pathfinding)
@@ -68,7 +68,9 @@ Para esta entrega se agregaron diversas funcionalidades con los siguientes boton
 	W : Hace visibles/invisibles los sprites de los nodos tácticos
 
 Las líneas que se generan para el pathfinding de los enemigos son del mismo color que el color asociado al enemigo
-según su máquina de estado, solo el enemigo 5 hace únicamente pathfinding y no está asociado a ninguna máquina de estado. El color más claro indica el camino generado por A* y el color más oscuro indica el camino generado por A* considerando el peso de los puntos tácticos.
+según su máquina de estado, solo el enemigo 5 hace únicamente pathfinding y no está asociado a ninguna máquina de estado. El color más claro indica el camino generado por A* y el color más oscuro indica el camino generado por A* considerando el peso de los puntos tácticos. Como se indica en la siguiente figura:
+
+<img src="images/lineas.png" alt="lineas"/>
 
 ### Máquinas de estado
 
@@ -91,3 +93,6 @@ según su máquina de estado, solo el enemigo 5 hace únicamente pathfinding y n
 ## Máquina 4
 
 <img src="images/decision4.png" alt="maquina 4"/>
+
+### Corrida
+Para la corrida de la entrega 3 se creó un menú principal que puede accederse al correr el proyecto en Godot o dar click en F5, este menú permite iniciar una nueva partida del juego.
