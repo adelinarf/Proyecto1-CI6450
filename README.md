@@ -42,7 +42,7 @@ También existen puntos de terreno táctico:
 
 <img src="images/barrel.png" alt="barrel"/>
 
-	Zona de madera que es dificil de recorrer para los enemigos
+	Zona de madera que es difícil de recorrer para los enemigos
 
 <img src="images/wood.png" alt="wood"/>
 
