@@ -12,8 +12,11 @@ func _process(delta: float) -> void:
 
 
 func _on_restart_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/path_finding_visibility_graph.tscn")
+	get_tree().change_scene_to_file("res://scenes/tactical_path_finding.tscn")
 
 
 func _on_exit_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().quit()
+
+func _on_new_game_pressed() -> void:
+	get_tree().change_scene_to_file("res://main_menu.tscn")

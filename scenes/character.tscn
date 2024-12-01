@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://yv7e7vu2h13t"]
+[gd_scene load_steps=38 format=3 uid="uid://yv7e7vu2h13t"]
 
 [ext_resource type="Script" path="res://scenes/character.gd" id="1_75w4k"]
 [ext_resource type="Texture2D" uid="uid://lpob8j5nws7h" path="res://sprites/enemies/Prototype_Character.png" id="2_2b1mq"]
@@ -29,6 +29,30 @@ region = Rect2(32, 96, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_uehia"]
 atlas = ExtResource("2_2b1mq")
 region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxso5"]
+atlas = ExtResource("2_2b1mq")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yybcm"]
+atlas = ExtResource("2_2b1mq")
+region = Rect2(32, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcwpu"]
+atlas = ExtResource("2_2b1mq")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlwku"]
+atlas = ExtResource("2_2b1mq")
+region = Rect2(32, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khas1"]
+atlas = ExtResource("2_2b1mq")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44lwd"]
+atlas = ExtResource("2_2b1mq")
+region = Rect2(32, 256, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixpcp"]
 atlas = ExtResource("2_2b1mq")
@@ -111,6 +135,29 @@ animations = [{
 }],
 "loop": true,
 "name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxso5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yybcm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcwpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlwku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khas1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44lwd")
+}],
+"loop": true,
+"name": &"recharge",
 "speed": 5.0
 }, {
 "frames": [{
@@ -218,6 +265,7 @@ shape = SubResource("RectangleShape2D_kceu0")
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_60dnh")
 animation = &"still"
+frame_progress = 0.743937
 
 [node name="Arrow" type="StaticBody2D" parent="."]
 

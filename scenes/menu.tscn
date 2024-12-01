@@ -68,9 +68,8 @@ icon = SubResource("AnimatedTexture_trmqh")
 flat = true
 
 [node name="New game" type="Button" parent="VBoxContainer"]
-visible = false
 layout_mode = 2
-text = "New game"
+text = "Main menu"
 icon = SubResource("AnimatedTexture_f8ltk")
 flat = true
 
@@ -89,4 +88,5 @@ text = "GAME OVER"
 fit_content = true
 
 [connection signal="pressed" from="VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="VBoxContainer/New game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

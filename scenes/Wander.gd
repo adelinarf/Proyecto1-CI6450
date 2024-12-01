@@ -75,3 +75,26 @@ func getSteering2() -> SteeringOutput:
 	var v = Vector2.from_angle(character.orientation)
 	result.lineal = (maxAcceleration * v) 
 	return result
+
+func getSteeringToPos(position) -> SteeringOutput:
+	wanderOrientation += randomBinomial() * wanderRate
+	var targetOrientation = wanderOrientation + character.orientation
+	# Calculate the center of the wander circle.
+	var v2 = Vector2.from_angle(character.orientation)
+	var targetP = character.position + wanderOffset * v2
+	character.change_circle_pos(targetP,wanderRadius)
+
+	# Calculate the target location.
+	var v3 = Vector2.from_angle(targetOrientation)
+	targetP += wanderRadius * v3
+	#character.change_target_pos(targetP)
+	character.position += ( targetP- character.position).normalized()
+
+	# 2. Delegate to face.
+	var result = super.getSteeringToPos(position)
+
+	# 3. Now set the linear acceleration to be at full
+	# acceleration in the direction of the orientation.
+	var v = Vector2.from_angle(character.orientation)
+	result.lineal = (maxAcceleration * v) 
+	return result

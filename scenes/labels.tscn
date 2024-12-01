@@ -8,8 +8,8 @@
 script = ExtResource("1_mx01s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(172.939, 160)
-scale = Vector2(9.24651, 9.41177)
+position = Vector2(172.939, 170.5)
+scale = Vector2(9.24651, 10.0294)
 texture = ExtResource("2_bqqed")
 region_enabled = true
 region_rect = Rect2(141.779, 204.274, 37.037, 34.6667)
@@ -70,7 +70,7 @@ texture = ExtResource("1_3bh5j")
 region_enabled = true
 region_rect = Rect2(102.37, 102.873, 20.7407, 19.5556)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel1" type="RichTextLabel" parent="."]
 offset_left = 37.0
 offset_right = 125.0
 offset_bottom = 24.0
@@ -132,11 +132,39 @@ texture = ExtResource("1_3bh5j")
 region_enabled = true
 region_rect = Rect2(102.37, 102.873, 20.7407, 19.5556)
 
+[node name="sprite20" type="Sprite2D" parent="."]
+position = Vector2(20, 300)
+scale = Vector2(1.3, 1.34211)
+texture = ExtResource("1_3bh5j")
+region_enabled = true
+region_rect = Rect2(102.37, 102.873, 20.7407, 19.5556)
+
+[node name="sprite21" type="Sprite2D" parent="."]
+position = Vector2(20, 328)
+scale = Vector2(1.3, 1.34211)
+texture = ExtResource("1_3bh5j")
+region_enabled = true
+region_rect = Rect2(102.37, 102.873, 20.7407, 19.5556)
+
 [node name="RichTextLabel19" type="RichTextLabel" parent="."]
 offset_left = 37.0
 offset_top = 256.0
 offset_right = 117.0
 offset_bottom = 280.0
+text = "Decision 9"
+
+[node name="RichTextLabel20" type="RichTextLabel" parent="."]
+offset_left = 37.0
+offset_top = 286.0
+offset_right = 117.0
+offset_bottom = 310.0
+text = "Decision 9"
+
+[node name="RichTextLabel21" type="RichTextLabel" parent="."]
+offset_left = 36.0
+offset_top = 315.0
+offset_right = 232.0
+offset_bottom = 339.0
 text = "Decision 9"
 
 [node name="sprite9" type="Sprite2D" parent="."]
@@ -189,6 +217,7 @@ region_enabled = true
 region_rect = Rect2(102.37, 102.873, 20.7407, 19.5556)
 
 [node name="sprite16" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(141, 237)
 scale = Vector2(1.3, 1.34211)
 texture = ExtResource("1_3bh5j")
@@ -197,7 +226,7 @@ region_rect = Rect2(102.37, 102.873, 20.7407, 19.5556)
 
 [node name="RichTextLabel9" type="RichTextLabel" parent="."]
 offset_left = 157.0
-offset_right = 245.0
+offset_right = 328.0
 offset_bottom = 24.0
 text = "Seek"
 
@@ -244,6 +273,7 @@ offset_bottom = 216.0
 text = "Update target position"
 
 [node name="RichTextLabel16" type="RichTextLabel" parent="."]
+visible = false
 offset_left = 157.0
 offset_top = 224.0
 offset_right = 237.0
@@ -251,6 +281,7 @@ offset_bottom = 248.0
 text = "Wander"
 
 [node name="sprite17" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(141, 269)
 scale = Vector2(1.3, 1.34211)
 texture = ExtResource("1_3bh5j")
@@ -258,6 +289,7 @@ region_enabled = true
 region_rect = Rect2(102.37, 102.873, 20.7407, 19.5556)
 
 [node name="sprite18" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(141, 301)
 scale = Vector2(1.3, 1.34211)
 texture = ExtResource("1_3bh5j")
@@ -265,6 +297,7 @@ region_enabled = true
 region_rect = Rect2(102.37, 102.873, 20.7407, 19.5556)
 
 [node name="RichTextLabel17" type="RichTextLabel" parent="."]
+visible = false
 offset_left = 157.0
 offset_top = 256.0
 offset_right = 336.0
@@ -272,6 +305,7 @@ offset_bottom = 280.0
 text = "Flee"
 
 [node name="RichTextLabel18" type="RichTextLabel" parent="."]
+visible = false
 offset_left = 157.0
 offset_top = 288.0
 offset_right = 237.0

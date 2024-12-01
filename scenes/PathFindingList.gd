@@ -7,7 +7,7 @@ func _init(new : Array) -> void:
 # returns the NodeRecord structure in the list with the lowest costSoFar value.
 func smallestElement() -> NodeRecord:
 	var selected : NodeRecord
-	var min = 1000
+	var min = INF
 	for n in list:
 		if n.costSoFar<min:
 			min = n.costSoFar

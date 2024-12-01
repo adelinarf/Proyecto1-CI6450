@@ -11,10 +11,16 @@ var list : Array
 func _init(new : Array) -> void:
 	self.list = new
 
+func _print():
+	var a = []
+	for x in self.list:
+		a.append([x.node.vector,x.connection.fromNode.vector,x.connection.toNode.vector])
+	#print(a)
+	return a
 # returns the NodeRecord structure in the list with the lowest costSoFar value.
-func smallestElement() -> NodeRecord:
+func smallestElement() -> NodeRecord:	
 	var selected : NodeRecord
-	var min = 10000000000
+	var min = INF
 	for n in list:
 		if n.estimatedTotalCost <= min:
 			min = n.estimatedTotalCost 
@@ -37,7 +43,7 @@ func add(node: NodeRecord) -> void:
 # whose node member is equal to the given parameter.
 func contains(node: NodeR) -> bool:
 	for n in list:
-		if n.node == node:
+		if n.node.vector == node.vector:
 			return true
 	return false
 
@@ -45,7 +51,7 @@ func contains(node: NodeR) -> bool:
 # is equal to the given parameter.
 func find(node: NodeR) -> NodeRecord:
 	for n in list:
-		if n.node == node:
+		if n.node.vector == node.vector:
 			return n
 	return NodeRecord.new()
 	

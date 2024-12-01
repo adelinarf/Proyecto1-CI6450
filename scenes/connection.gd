@@ -6,7 +6,10 @@ var fromNode: NodeR
 var toNode: NodeR
 # The non-negative cost of this connection.
 func getCost() -> float:
-	return 92
+	return cost
+
+func getCostModified(t : Tactic, g : Graph) -> float:
+	return cost + t.weight(fromNode,toNode) * t.tactic(fromNode,toNode)
 
 func getFromNode() -> NodeR:
 	var startRecord = NodeRecord.new()

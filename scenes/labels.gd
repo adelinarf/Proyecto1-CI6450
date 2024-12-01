@@ -40,6 +40,33 @@ func changeColors(decisions,states):
 		decisionsSprites[x].modulate = decisions[x]
 	for x in range(states.size()):
 		statesSprites[x].modulate = states[x]
+		
+
+func changeColorsSecond(decisions,states,states_text,tactical):
+	var decisionsSprites = getNodes("sprite",1,8)
+	var last = getNodes("sprite",19,21)
+	decisionsSprites.append_array(last)
+	var decisionText = getNodes("RichTextLabel",1,8)
+	var lastTextDecision = getNodes("RichTextLabel",19,21)
+	decisionText.append_array(lastTextDecision)
+	var statesSprites = getNodes("sprite",9,18)
+	var statesText = getNodes("RichTextLabel",9,18)
+	
+	for x in range(decisionsSprites.size()):
+		if x<=decisions.size()-1:
+			decisionsSprites[x].modulate = decisions[x]
+		else:
+			decisionsSprites[x].texture = load(tactical[x-decisions.size()][0])
+			decisionsSprites[x].region_enabled = false
+			decisionText[x].text = tactical[x-decisions.size()][1]
+	for x in range(states.size()):
+		if x<=states.size()-1:
+			statesSprites[x].modulate = states[x]
+			statesText[x].text = states_text[x]
+		else:
+			statesSprites[x].visible = false
+			statesText[x].visible = false
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

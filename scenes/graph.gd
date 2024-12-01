@@ -5,7 +5,6 @@ var nodes = []
 var connections = []
 
 func getLastConnection(size:float) -> Connection:
-	print("LAST CONNECTION",size)
 	for c in connections:
 		if c.toNode.name == str(size):
 			return c
@@ -16,10 +15,7 @@ func getLastConnection(size:float) -> Connection:
 
 func getToConnections(toNode:NodeR, cost : float) -> NodeRecord:
 	for c in connections:
-		#print(c.fromNode.name)
-		#print(c.toNode.name)
-		#print(toNode.name,'pasado')
-		if c.toNode.name == toNode.name:
+		if c.toNode.vector == toNode.vector or c.toNode.name == toNode.name:
 			
 			var a = NodeRecord.new()
 			a.node = toNode
@@ -47,14 +43,13 @@ func getConnections(fromNode : NodeRecord) -> Array: #connecgtion[]
 	return a
 
 func createNodes() -> void:
-	nodes.append(NodeR.new())
-	nodes.append(NodeR.new())
-	nodes.append(NodeR.new())
-	nodes.append(NodeR.new())
+	nodes.append(NodeR.new(Vector2.ZERO))
+	nodes.append(NodeR.new(Vector2.ZERO))
+	nodes.append(NodeR.new(Vector2.ZERO))
+	nodes.append(NodeR.new(Vector2.ZERO))
 
 func createConnections() -> Array:
 	var a = []
-	print(nodes.size())
 	for n in range(0,nodes.size()-1):
 		var connection = Connection.new()
 		connection.fromNode = nodes[n]
@@ -63,7 +58,6 @@ func createConnections() -> Array:
 		connection.toNode.name = str(n+1)
 		connection.cost = 10
 		a.append(connection)
-		print("from ",n,"to",n+1)
 	connections=a
 	return a
 
@@ -147,7 +141,6 @@ func generate_voronoi_diagram(width, height, num_cells,text,vert):
 		nb.append(randi_range(0,256))
 		
 		
-	print(nr,ng,nb)
 	var positions = []
 	for x in num_cells:
 		positions.append([])
@@ -162,7 +155,6 @@ func generate_voronoi_diagram(width, height, num_cells,text,vert):
 					j = i
 			#node based on j
 			#connection from j to j+1
-			#[left_upper,left_down,right_upper,right_down]
 			if not inside(x,y,vert):
 				positions[j].append([x,y,color[j]])
 				dynImage.set_pixel(x,y,color[j])
@@ -325,6 +317,14 @@ func visibleF(p1,p2,S,node):
 	return visible
 	
 #https://personal.us.es/almar/docencia/practicas/grafvis/Practica.html
+
+func node_from_nodes(x):
+	for y in self.nodes:
+		if y.vector == x:
+			return y
+	return null
+	
+
 func visibilityGraphEasiest(S,vertexes,node):
 	var V = []
 	for vert in vertexes:
@@ -334,10 +334,8 @@ func visibilityGraphEasiest(S,vertexes,node):
 	var lados = []
 	lados.resize(V.size()*V.size())
 	lados.fill([])
-	#print(array)
 	var counter = 0
 	var c=0
-	#print(V.size(),"SIZE")
 	for i in range(V.size()):
 		for j in range(V.size()):
 			if j!=i:
@@ -351,25 +349,22 @@ func visibilityGraphEasiest(S,vertexes,node):
 					line.width = 1
 					node.add_child(line)
 					E.append([V[i],V[j]])
-					nodes.append(NodeR.new())
+					var v1 = NodeR.new(V[i])
+					v1.name = str(i)
+					nodes.append(v1)
+					var v2 = NodeR.new(V[j])
+					v2.name = str(j)
+					nodes.append(v2)
 				else:
 					continue
 			else:
 				continue
-					#sprite.position = Vector2(float(V[i]),float(V[j]))
-					
-					#node.add_child(sprite)
-	#print(counter)
-	#print(c)
-	for x in range(nodes.size()-1):
-		for lado in lados[x]:
-			var connection = Connection.new()
-			connection.fromNode = nodes[x]
-			connection.fromNode.name = str(x)
-			connection.toNode = nodes[x+1]
-			connection.toNode.name = str(x+1)
-			connection.cost = 0
-			connections.append(connection)
+	for lado in E:
+		var connection = Connection.new()
+		connection.fromNode = node_from_nodes(lado[0])
+		connection.toNode = node_from_nodes(lado[1])
+		connection.cost = lado[0].distance_to(lado[1])
+		connections.append(connection)
 	return E
 			
 
@@ -409,11 +404,15 @@ func createNodesNavMesh() -> void:
 func createConnectionsNavMesh() -> Array:
 	return []
 
+func get_connections(node):
+	for connection in connections:
+		if connection.fromNode == node:
+			return connection
 
 func pathfindDijkstra(graph: Graph,start: NodeR,end: NodeR) -> Array:#[]
 	var startRecord = NodeRecord.new()
 	startRecord.node = start
-	var connecction = Connection.new()
+	var connecction = get_connections(start) # Connection.new()
 	connecction.fromNode = graph.nodes[0]
 	connecction.toNode =  graph.nodes[1]
 	connecction.cost = 10
@@ -438,7 +437,6 @@ func pathfindDijkstra(graph: Graph,start: NodeR,end: NodeR) -> Array:#[]
   
 		# Otherwise get its outgoing connections.
 		var connections = graph.getConnections(current)
-		#print(connections,"connections")
 		# Loop through each connection in turn.
 		for connection in connections:
 	  # Get the cost estimate for the end node.
@@ -468,7 +466,6 @@ func pathfindDijkstra(graph: Graph,start: NodeR,end: NodeR) -> Array:#[]
 				# And add it to the open list.
 				if not open.contains(endNode):
 					#open += 
-					#print("add")
 					open.add(endNodeRecord)
 		
 		# We’ve finished looking at the connections for the 
@@ -476,39 +473,36 @@ func pathfindDijkstra(graph: Graph,start: NodeR,end: NodeR) -> Array:#[]
 		# remove it from the open list.
 		open.delete(current) #-= current
 		closed.add(current) #+= current
-		#print(closed.list,"closed")
-		#print(open.list,"open")
+		
 
 		# We’re here if we’ve either found the goal, or if we’ve
 		# no more nodes to search, find which.
 	if current.node != goal:
 	# We’ve run out of nodes without finding the goal, so 
 	# there’s no solution.
-		#print("this")
 		return []
 	else:
 	# Compile the list of connections in the path.
 	# Work back along the path, accumulating connections.
-		#print("else")
 		while current.node != start:
 			path.append(current.connection)
 			
 			var fromN = current.connection.getFromNode()
-			#print(fromN)
 			current = graph.getToConnections(fromN, current.connection.cost)
-			#current = current.connection.getFromNode()
 # Reverse the path, and return it.
 		return path #reverse
 
 
 
-func pathfindAStar(graph: Graph, start: NodeR, end: NodeR, heuristic: Heuristic) -> Array:
+
+
+func pathfindAStar(graph: Graph, start: NodeR, end: NodeR, heuristic: Heuristic,N) -> Array:
 	# This structure is used to keep track of the 
 	# information we need for each node.
 	# Initialize the record for the start node.
 	var startRecord = NodeRecord.new()
 	startRecord.node = start
-	startRecord.connection = null
+	startRecord.connection = get_connections(start)
 	startRecord.costSoFar = 0
 	startRecord.estimatedTotalCost = heuristic.estimate(start)
 
@@ -522,7 +516,10 @@ func pathfindAStar(graph: Graph, start: NodeR, end: NodeR, heuristic: Heuristic)
 	# Find the smallest element in the open list (using 
 	# the estimatedTotalCost).
 		current = open.smallestElement()
-
+		
+		if current.node.vector == goal.vector:
+			break
+		
 		# If it is the goal node, then terminate.
 		if current.node == goal:
 			break
@@ -538,52 +535,53 @@ func pathfindAStar(graph: Graph, start: NodeR, end: NodeR, heuristic: Heuristic)
 
 			# If the node is closed we may have to skip, or 
 			# remove it from the closed list.
+			var endNodeRecord
+			var endNodeHeuristic
 			if closed.contains(endNode):
 			# Here we find the record in the closed list 
 			# corresponding to the endNode.
-				var endNodeRecord = closed.find(endNode)
-
+				endNodeRecord = closed.find(endNode)
 				# If we didn’t find a shorter route, skip.
 				if endNodeRecord.costSoFar <= endNodeCost:
 					continue
 				# Otherwise remove it from the closed list.
-				closed -= endNodeRecord
+				closed.delete(endNodeRecord)
 			# We can use the node’s old cost values to 
 			# calculate its heuristic without calling the 
 			# possibly expensive heuristic function.
-				var endNodeHeuristic = endNodeRecord.estimatedTotalCost - endNodeRecord.costSoFar
+				endNodeHeuristic = endNodeRecord.estimatedTotalCost - endNodeRecord.costSoFar
 	  # Skip if the node is open and we’ve not 
 	  # found a better route.
 			elif open.contains(endNode):
 		# Here we find the record in the open list 
 		# corresponding to the endNode.
-				var endNodeRecord = open.find(endNode)
+				endNodeRecord = open.find(endNode)
 		# If our route is no better, then skip.
 				if endNodeRecord.costSoFar <= endNodeCost:
 					continue
 		# Again, we can calculate its heuristic.
-				var endNodeHeuristic = endNodeRecord.estimatedTotalCost - endNodeRecord.costSoFar
-
+				endNodeHeuristic = endNodeRecord.estimatedTotalCost - endNodeRecord.costSoFar
 	  # Otherwise we know we’ve got an unvisited 
 	  # node, so make a record for it.
 			else:
-				var endNodeRecord = NodeRecord.new()
+				endNodeRecord = NodeRecord.new()
 				endNodeRecord.node = endNode
 
 				# We’ll need to calculate the heuristic 
 				# value using the function, since we don’t 
 				# have an existing record to use.
-				var endNodeHeuristic = heuristic.estimate(endNode)
+				endNodeHeuristic = heuristic.estimate(endNode)
 
-				# We’re here if we need to update the node. Update the 
-				# cost, estimate and connection.
-				endNodeRecord.cost = endNodeCost
-				endNodeRecord.connection = connection
-				endNodeRecord.estimatedTotalCost = endNodeCost + endNodeHeuristic
-
-				# And add it to the open list.
-				if not open.contains(endNode):
-					open.add(endNodeRecord)
+			# We’re here if we need to update the node. Update the 
+			# cost, estimate and connection.
+			endNodeRecord.cost = endNodeCost
+			endNodeRecord.connection = connection
+			endNodeRecord.costSoFar = endNodeCost
+			endNodeRecord.estimatedTotalCost = endNodeCost + endNodeHeuristic
+				
+			# And add it to the open list.
+			if not open.contains(endNode):
+				open.add(endNodeRecord)
 
 		# We’ve finished looking at the connections for the 
 		# current node, so add it to the closed list and remove 
@@ -593,7 +591,7 @@ func pathfindAStar(graph: Graph, start: NodeR, end: NodeR, heuristic: Heuristic)
 
 	# We’re here if we’ve either found the goal, or if we’ve no 
 	# more nodes to search, find which.
-	if current.node != goal:
+	if current.node.vector != goal.vector:
 	# We’ve run out of nodes without finding the goal, so 
 	# there’s no solution.
 		return []
@@ -603,10 +601,359 @@ func pathfindAStar(graph: Graph, start: NodeR, end: NodeR, heuristic: Heuristic)
 
 	# Work back along the path, accumulating 
 	# connections.
-	while current.node != start:
-			path.append(current.connection)
-			var fromN = current.connection.getFromNode()
-			current = graph.getToConnections(fromN, current.connection.cost)
-
+	var costs = 0
+	var path_of_vectors = [current.connection.toNode.vector]
+	var dict = {}
+	dict[current.connection.toNode.vector] = 1
+	while current.node.vector != start.vector: #coun<30: #
+		path.append(current.connection)
+		costs+=current.cost
+		if dict.has(current.connection.toNode.vector):
+			var arr = [current.connection.fromNode.vector]
+			arr.append_array(path_of_vectors)
+			path_of_vectors = arr
+			dict[current.connection.fromNode.vector] = 1
+			#path_of_vectors.append(current.connection.fromNode.vector)
+		elif dict.has(current.connection.fromNode.vector):
+			var arr = [current.connection.toNode.vector]
+			arr.append_array(path_of_vectors)
+			path_of_vectors = arr
+			dict[current.connection.toNode.vector] = 1
+		var fromN = current.connection.getFromNode()
+		var a = closed.find(fromN)
+		current = a 
+	
 	# Reverse the path, and return it.
-	return path
+	return path_of_vectors
+	
+
+
+func pathfindAStarCost(graph: Graph, start: NodeR, end: NodeR, heuristic: Heuristic,N, t : Tactic) -> float:
+	# This structure is used to keep track of the 
+	# information we need for each node.
+	# Initialize the record for the start node.
+	var startRecord = NodeRecord.new()
+	startRecord.node = start
+	startRecord.connection = get_connections(start)
+	startRecord.costSoFar = 0
+	startRecord.estimatedTotalCost = heuristic.estimate(start)
+
+	# Initialize the open and closed lists.
+	var open = PathFindingListStar.new([startRecord])
+	var closed = PathFindingListStar.new([])
+	var current : NodeRecord
+	var goal = end
+	# Iterate through processing each node.
+	while open.size() > 0:
+	# Find the smallest element in the open list (using 
+	# the estimatedTotalCost).
+		current = open.smallestElement()
+		
+		# If it is the goal node, then terminate.
+		if current.node.vector == goal.vector:
+			break
+
+	# Otherwise get its outgoing connections.
+		var connections = graph.getConnections(current)
+
+		# Loop through each connection in turn.
+		for connection in connections:
+			# Get the cost estimate for the end node.
+			var endNode = connection.getToNode()
+			var endNodeCost = current.costSoFar + connection.getCost()			
+			var costly = t.weight(connection.getFromNode(),endNode) * t.tactic(connection.getFromNode(),endNode)
+			endNodeCost += costly
+			# If the node is closed we may have to skip, or 
+			# remove it from the closed list.
+			var endNodeRecord
+			var endNodeHeuristic
+			if closed.contains(endNode):
+			# Here we find the record in the closed list 
+			# corresponding to the endNode.
+				endNodeRecord = closed.find(endNode)
+				# If we didn’t find a shorter route, skip.
+				if endNodeRecord.costSoFar <= endNodeCost :
+					continue
+				# Otherwise remove it from the closed list.
+				closed.delete(endNodeRecord)
+			# We can use the node’s old cost values to 
+			# calculate its heuristic without calling the 
+			# possibly expensive heuristic function.
+				endNodeHeuristic = endNodeRecord.estimatedTotalCost - endNodeRecord.costSoFar
+	  # Skip if the node is open and we’ve not 
+	  # found a better route.
+			elif open.contains(endNode):
+		# Here we find the record in the open list 
+		# corresponding to the endNode.
+				endNodeRecord = open.find(endNode)
+			
+		# If our route is no better, then skip.
+				#cambiar por mayor que
+				if endNodeRecord.costSoFar <= endNodeCost :
+					continue
+		# Again, we can calculate its heuristic.
+				endNodeHeuristic = endNodeRecord.estimatedTotalCost - endNodeRecord.costSoFar
+	  # Otherwise we know we’ve got an unvisited 
+	  # node, so make a record for it.
+			else:
+				endNodeRecord = NodeRecord.new()
+				endNodeRecord.node = endNode
+
+				# We’ll need to calculate the heuristic 
+				# value using the function, since we don’t 
+				# have an existing record to use.
+				endNodeHeuristic = heuristic.estimate(endNode)
+
+			# We’re here if we need to update the node. Update the 
+			# cost, estimate and connection.
+			endNodeRecord.cost = endNodeCost
+			endNodeRecord.connection = connection
+			endNodeRecord.costSoFar = endNodeCost
+			endNodeRecord.estimatedTotalCost = endNodeCost + endNodeHeuristic
+				
+			# And add it to the open list.
+			if not open.contains(endNode):
+				open.add(endNodeRecord)
+
+		# We’ve finished looking at the connections for the 
+		# current node, so add it to the closed list and remove 
+		# it from the open list.
+		open.delete(current)
+		closed.add(current)
+	# We’re here if we’ve either found the goal, or if we’ve no 
+	# more nodes to search, find which.
+	if current.node.vector != goal.vector:
+	# We’ve run out of nodes without finding the goal, so 
+	# there’s no solution.
+		return -1
+	
+	# Compile the list of connections in the path.
+	var path = []
+
+	# Work back along the path, accumulating 
+	# connections.	
+	var costo = 0
+	var path_of_vectors = [current.connection.toNode.vector]
+	var dict = {}
+	dict[current.connection.toNode.vector] = 1
+
+	var visited = []
+	while current.node.vector != start.vector:
+		path.append(current.connection)
+		costo+= current.cost
+		if dict.has(current.connection.toNode.vector):
+			var arr = [current.connection.fromNode.vector]
+			arr.append_array(path_of_vectors)
+			path_of_vectors = arr
+			dict[current.connection.fromNode.vector] = 1
+		elif dict.has(current.connection.fromNode.vector):
+			var arr = [current.connection.toNode.vector]
+			arr.append_array(path_of_vectors)
+			path_of_vectors = arr
+			dict[current.connection.toNode.vector] = 1
+		var fromN = current.connection.getFromNode()
+		var a = closed.find(fromN)
+		current = a
+		if current.connection not in visited:
+			visited.append(current.connection)
+		else:
+			break
+	
+	if start.vector not in path_of_vectors or goal.vector not in path_of_vectors:
+		costo = -1	
+	# Reverse the path, and return it.
+		
+	return costo
+
+
+
+func closest_to_node(position : Vector2):
+	var min = INF
+	var selected = null
+	for node in nodes:
+		if position.distance_to(node.vector) < min:
+			min = position.distance_to(node.vector)
+			selected = node
+	return selected
+
+func getTo(toNode:NodeR, cost : float,costSoFar : float) -> NodeRecord:
+	for c in connections:
+		if c.toNode.vector == toNode.vector or c.toNode.name == toNode.name:
+			if c.cost == cost:
+				var a = NodeRecord.new()
+				a.node = toNode
+				a.connection = c
+				a.costSoFar = costSoFar-a.connection.cost
+				a.cost = a.connection.cost
+				return a
+	return NodeRecord.new()
+	
+	
+	#costsoFar = current.costSoFar + connection.getCost()
+
+
+
+
+func pathfindAStarModified(graph: Graph, start: NodeR, end: NodeR, heuristic: Heuristic,N, t : Tactic) -> Array:
+	# This structure is used to keep track of the 
+	# information we need for each node.
+	# Initialize the record for the start node.
+	var startRecord = NodeRecord.new()
+	startRecord.node = start
+	startRecord.connection = get_connections(start)
+	startRecord.costSoFar = 0
+	startRecord.estimatedTotalCost = heuristic.estimate(start)
+
+	# Initialize the open and closed lists.
+	var open = PathFindingListStar.new([startRecord])
+	var closed = PathFindingListStar.new([])
+	var current : NodeRecord
+	var goal = end
+	# Iterate through processing each node.
+	while open.size() > 0:
+	# Find the smallest element in the open list (using 
+	# the estimatedTotalCost).
+		current = open.smallestElement()
+		
+		# If it is the goal node, then terminate.
+		if current.node.vector == goal.vector:
+			break
+
+	# Otherwise get its outgoing connections.
+		var connections = graph.getConnections(current)
+
+		# Loop through each connection in turn.
+		for connection in connections:
+			# Get the cost estimate for the end node.
+			var endNode = connection.getToNode()
+			var endNodeCost = current.costSoFar + connection.getCost()			
+			var costly = t.weight(connection.getFromNode(),endNode) * t.tactic(connection.getFromNode(),endNode)
+			endNodeCost += costly
+			# If the node is closed we may have to skip, or 
+			# remove it from the closed list.
+			var endNodeRecord
+			var endNodeHeuristic
+			if closed.contains(endNode):
+			# Here we find the record in the closed list 
+			# corresponding to the endNode.
+				endNodeRecord = closed.find(endNode)
+				# If we didn’t find a shorter route, skip.
+				if endNodeRecord.costSoFar <= endNodeCost :
+					continue
+				# Otherwise remove it from the closed list.
+				closed.delete(endNodeRecord)
+			# We can use the node’s old cost values to 
+			# calculate its heuristic without calling the 
+			# possibly expensive heuristic function.
+				endNodeHeuristic = endNodeRecord.estimatedTotalCost - endNodeRecord.costSoFar
+	  # Skip if the node is open and we’ve not 
+	  # found a better route.
+			elif open.contains(endNode):
+		# Here we find the record in the open list 
+		# corresponding to the endNode.
+				endNodeRecord = open.find(endNode)
+			
+		# If our route is no better, then skip.
+				#cambiar por mayor que
+				if endNodeRecord.costSoFar <= endNodeCost :
+					continue
+		# Again, we can calculate its heuristic.
+				endNodeHeuristic = endNodeRecord.estimatedTotalCost - endNodeRecord.costSoFar
+	  # Otherwise we know we’ve got an unvisited 
+	  # node, so make a record for it.
+			else:
+				endNodeRecord = NodeRecord.new()
+				endNodeRecord.node = endNode
+
+				# We’ll need to calculate the heuristic 
+				# value using the function, since we don’t 
+				# have an existing record to use.
+				endNodeHeuristic = heuristic.estimate(endNode)
+
+			# We’re here if we need to update the node. Update the 
+			# cost, estimate and connection.
+			endNodeRecord.cost = endNodeCost
+			endNodeRecord.connection = connection
+			endNodeRecord.costSoFar = endNodeCost
+			endNodeRecord.estimatedTotalCost = endNodeCost + endNodeHeuristic
+				
+			# And add it to the open list.
+			if not open.contains(endNode):
+				open.add(endNodeRecord)
+
+		# We’ve finished looking at the connections for the 
+		# current node, so add it to the closed list and remove 
+		# it from the open list.
+		open.delete(current)
+		closed.add(current)
+	# We’re here if we’ve either found the goal, or if we’ve no 
+	# more nodes to search, find which.
+	if current.node.vector != goal.vector:
+	# We’ve run out of nodes without finding the goal, so 
+	# there’s no solution.
+		return []
+	
+	# Compile the list of connections in the path.
+	var path = []
+
+	# Work back along the path, accumulating 
+	# connections.	
+	var costo = 0
+	var path_of_vectors = [current.connection.toNode.vector]
+	var dict = {}
+	dict[current.connection.toNode.vector] = 1
+
+	var visited = []
+	while current.node.vector != start.vector:
+		path.append(current.connection)
+		costo+= current.cost
+		if dict.has(current.connection.toNode.vector):
+			var arr = [current.connection.fromNode.vector]
+			arr.append_array(path_of_vectors)
+			path_of_vectors = arr
+			dict[current.connection.fromNode.vector] = 1
+		elif dict.has(current.connection.fromNode.vector):
+			var arr = [current.connection.toNode.vector]
+			arr.append_array(path_of_vectors)
+			path_of_vectors = arr
+			dict[current.connection.toNode.vector] = 1
+		var fromN = current.connection.getFromNode()
+		var a = closed.find(fromN)
+		current = a
+		if current.connection not in visited:
+			visited.append(current.connection)
+		else:
+			break
+	
+	if start.vector not in path_of_vectors or goal.vector not in path_of_vectors:
+		path_of_vectors = []
+	# Reverse the path, and return it.
+		
+	return path_of_vectors
+
+func get_connections_nodes(node):
+	var co = []
+	for connection in connections:
+		if connection.fromNode == self.nodes[node]:
+			co.append(connection.toNode)
+	var pos  =[]
+	for x in range(self.nodes.size()):
+		for y in co:
+			if y.vector == self.nodes[x].vector:
+				pos.append(x)
+	return pos
+				
+
+func changeConnections(nodes):
+	for x in nodes:
+		var node = self.closest_to_node(x)
+		for connection in self.connections:
+			if connection.fromNode == node or connection.toNode == node:
+				connection.cost += 10000
+
+var rng = RandomNumberGenerator.new()    
+	
+func random_node():
+	rng.randomize()
+	var r = rng.randf_range(0,self.nodes.size()-1)
+	return self.nodes[r]

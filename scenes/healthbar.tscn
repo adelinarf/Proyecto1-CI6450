@@ -29,6 +29,13 @@ offset_right = 924.0
 offset_bottom = 48.0
 text = "SCORE"
 
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+offset_left = 726.0
+offset_top = 54.0
+offset_right = 926.0
+offset_bottom = 94.0
+text = "SCORE"
+
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 offset_left = 944.0
 offset_top = 56.0

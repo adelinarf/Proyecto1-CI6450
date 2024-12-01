@@ -421,7 +421,7 @@ func _ready() -> void:
 	var t = g1.visibilityGraphEasiest(all_vertexes,vertexes,$".")
 	lados = t.size()
 	var heur = Heuristic.new(g1.nodes[g1.nodes.size()-1])
-	var fc = g1.pathfindAStar(g1,g1.nodes[0],g1.nodes[g1.nodes.size()-1],heur)
+	var fc = g1.pathfindAStar(g1,g1.nodes[0],g1.nodes[g1.nodes.size()-1],heur,$'.')
 	
 	target = get_node("Player")
 	character = get_node("Character1")

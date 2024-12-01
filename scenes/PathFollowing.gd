@@ -68,3 +68,15 @@ func getSteeringPrediction2(positionFinal) -> SteeringOutput:
 	#character.position  += ( path.getPosition(targetParam) - character.position)
 	# 2. Delegate to seek
 	return super.getSteering2(positionFinal)
+
+var pos = 0
+func walk_all():
+	if self.pos >= self.positions.size():
+		return null
+	if character.position.distance_to(self.positions[self.pos]) < 90:
+		self.pos+=1
+	
+	if self.pos >= self.positions.size():
+		return null
+	
+	return self.getSteeringPrediction2(self.positions[self.pos])

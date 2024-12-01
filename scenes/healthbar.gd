@@ -8,6 +8,12 @@ func _ready() -> void:
 	player.scoreChanged.connect(updateScore)
 	update()
 
+func updateDie(val):
+	if val==true:
+		$RichTextLabel3.text = "CAN DIE? YES"
+	else:
+		$RichTextLabel3.text = "CAN DIE? NO"
+
 func update():
 	$ProgressBar.value = player.currentHealth * 100 / player.maxHealth
 	$TextureProgressBar.value = player.currentHealth * 100 / player.maxHealth

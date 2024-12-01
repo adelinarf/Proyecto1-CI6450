@@ -14,4 +14,4 @@ func estimate(fromNode: NodeR) -> float:
 func estimatex(fromNode: NodeR, toNode: NodeR) -> float:
 	var from = int(fromNode.name)
 	var to = int(toNode.name)
-	return to-from
+	return fromNode.vector.distance_to(toNode.vector)
