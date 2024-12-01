@@ -755,7 +755,7 @@ func detectCollisionCharacter(char):
 	var detector = CollisionDetector.new(layer)
 	var ray = char.velocity
 	ray.normalized()
-	ray *= 3 
+	ray *= 5
 	var collision = detector.getCollision(char.position, ray)
 	
 	if collision.position != Vector2.ZERO:
