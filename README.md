@@ -1,4 +1,4 @@
-# Proyecto 2 - CI6450
+# Proyecto - CI6450
 
 ## Cómo usar
 
@@ -58,7 +58,8 @@ Para esta entrega se agregaron diversas funcionalidades con los siguientes boton
 
 	S : Diferencia los personajes segun la leyenda por la máquina de estado utilizada por cada uno
 
-	D : Activa o desactiva la capacidad de morir, si está activada el jugador muere si su salud es menor a 0, sino sigue el juego.
+	D : Activa o desactiva la capacidad de morir, si está activada el jugador muere si su salud es menor 
+ 	a 0, sino sigue el juego.
 
 	1,2,3,4,5 - Muestra solo el personaje asociado a cada número (según la máquina de estado que usa) 
 	y las líneas de su pathfinding (El personaje 5 solo hace pathfinding)
