@@ -532,12 +532,13 @@ func _ready() -> void:
 	var cover_weight = -10
 	var vis_weight = -20
 	var sniper_weight = -1
-	var terrain_tactic = 1
+	var terrain_tactic = 0.5
 	var benefitial_terrain_tactic = 1
-	var non_benefitial_terrain_tactic = 1
+	var non_benefitial_terrain_tactic = 0.1
 	var cover_tactic = -1
 	var vis_tactic = -1
 	var sniper_tactic = -1
+	
 	for x in g1.nodes:
 		#if 953 <= x.vector.x and x.vector.x<=2500:
 		#	if 184 <= x.vector.y and x.vector.y <=374:
@@ -603,6 +604,10 @@ func _ready() -> void:
 	tactic = Tactic.new(tactical_dictionary_weights,tactical_dictionary_tactics)
 	
 	create_nodes()
+	
+	cover_quality = quality_of_tactical_nodes(COVER_TYPE)
+	vis_quality = quality_of_tactical_nodes(VIS_TYPE)
+	sniper_quality = quality_of_tactical_nodes(SNIPER_TYPE)
 
 	points_char7[0] = g1.closest_to_node(points_char7[0])
 	if 1 in running:
@@ -615,9 +620,7 @@ func _ready() -> void:
 		initialize_pathfinding(character4, pathfollowing_char4,true,colors_char4)
 	if 5 in running:
 		initialize_pathfinding(character5, pathfollowing_char5,true,colors_char5,points_char7[0])
-	cover_quality = quality_of_tactical_nodes(COVER_TYPE)
-	vis_quality = quality_of_tactical_nodes(VIS_TYPE)
-	sniper_quality = quality_of_tactical_nodes(SNIPER_TYPE)
+	
 	
 	
 	var children = get_children(true)
@@ -752,7 +755,7 @@ func detectCollisionCharacter(char):
 	var detector = CollisionDetector.new(layer)
 	var ray = char.velocity
 	ray.normalized()
-	ray *= 0.1
+	ray *= 3 
 	var collision = detector.getCollision(char.position, ray)
 	
 	if collision.position != Vector2.ZERO:
@@ -894,6 +897,7 @@ func point_with_bigger_quality(quality):
 	for key in keys:
 		if quality[key] == vals[0]:
 			return key
+	return quality[keys[0]]
 	
 
 func check_points(char, TYPE, MAX):
