@@ -26,9 +26,9 @@ En la tercera entrega se considera la salud de los enemigos. La salud de los ene
 
 	Puntos de cover en los que se recarga la salud del enemigo 
 
-	Puntos visuales en los que se para el enemigo
+	Puntos visuales en los que se detiene el enemigo
 
-	Puntos de sniper en los que se para el enemigo para lanzar proyectiles
+	Puntos de sniper en los que se detiene el enemigo para lanzar proyectiles
 
 #### Los puntos tácticos están marcados con varios sprites que pueden verse en la leyenda.
 
@@ -60,7 +60,8 @@ Para esta entrega se agregaron diversas funcionalidades con los siguientes boton
 
 	D : Activa o desactiva la capacidad de morir
 
-	1,2,3,4,5 - Muestra solo el personaje asociado a cada número (según la máquina de estado que usa) y las líneas de su pathfinding (El personaje 5 solo hace pathfinding)
+	1,2,3,4,5 - Muestra solo el personaje asociado a cada número (según la máquina de estado que usa) 
+	y las líneas de su pathfinding (El personaje 5 solo hace pathfinding)
 
 	0 : Muestra todos los personajes
 
