@@ -68,7 +68,7 @@ Para esta entrega se agregaron diversas funcionalidades con los siguientes boton
 	W : Hace visibles/invisibles los sprites de los nodos tácticos
 
 Las líneas que se generan para el pathfinding de los enemigos son del mismo color que el color asociado al enemigo
-según su máquina de estado, solo el enemigo 5 hace únicamente pathfinding y no está asociado a ninguna máquina de estado. El color más claro indica el camino generado por A* y el color más oscuro indica el camino generado por A* considerando el peso de los puntos tácticos. Como se indica en la siguiente figura:
+según su máquina de estado, solo el enemigo 5 hace únicamente pathfinding y no está asociado a ninguna máquina de estado. El color más claro indica el camino generado por A* y el color más oscuro indica el camino generado por el A* táctico. Como se indica en la siguiente figura:
 
 <img src="images/lineas.png" alt="lineas"/>
 
