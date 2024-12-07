@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://myvc3o4uhrmm"]
+
+[ext_resource type="Script" path="res://scenes/path_finding_a_star.gd" id="1_2qg8v"]
+
+[node name="PathFindingAStar" type="Node2D"]
+script = ExtResource("1_2qg8v")

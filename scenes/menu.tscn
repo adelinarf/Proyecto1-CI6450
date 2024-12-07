@@ -1,0 +1,98 @@
+[gd_scene load_steps=20 format=3 uid="uid://cfwxlpn5yc5q4"]
+
+[ext_resource type="Texture2D" uid="uid://dk75bgk4gyfto" path="res://sprites/background/red_crystal_0000.png" id="1_3guv5"]
+[ext_resource type="Script" path="res://scenes/game_over_menu.gd" id="1_h4bw4"]
+[ext_resource type="Texture2D" uid="uid://bnwm37thpggsp" path="res://sprites/menu/06 Border 01.png" id="1_wpgpr"]
+[ext_resource type="Texture2D" uid="uid://cb6qs8ylf0jk0" path="res://sprites/background/green_crystal_0003.png" id="2_12236"]
+[ext_resource type="Texture2D" uid="uid://6nxlfnv3yodw" path="res://sprites/background/green_crystal_0000.png" id="2_xadf8"]
+[ext_resource type="Texture2D" uid="uid://lfopkwpejv2a" path="res://sprites/background/green_crystal_0001.png" id="3_4oqbm"]
+[ext_resource type="Theme" uid="uid://pmi4srbq52j6" path="res://font/smaller_font.tres" id="3_30k37"]
+[ext_resource type="Texture2D" uid="uid://ddwv4eg52cmi5" path="res://sprites/background/green_crystal_0002.png" id="3_66c01"]
+[ext_resource type="Texture2D" uid="uid://dv6jh1ltswqp" path="res://sprites/background/red_crystal_0001.png" id="7_go8hp"]
+[ext_resource type="Texture2D" uid="uid://bvgs7dhwqarql" path="res://sprites/background/red_crystal_0002.png" id="8_uqvpp"]
+[ext_resource type="Texture2D" uid="uid://d2djovrdhgbdk" path="res://sprites/background/red_crystal_0003.png" id="9_1bahp"]
+[ext_resource type="Texture2D" uid="uid://b1npof81aof6o" path="res://sprites/background/pink_crystal_0000.png" id="10_6r58q"]
+[ext_resource type="Texture2D" uid="uid://bni0dxl1uk1lu" path="res://sprites/background/pink_crystal_0001.png" id="11_8k3ro"]
+[ext_resource type="Texture2D" uid="uid://j3u5h2aihjl7" path="res://sprites/background/pink_crystal_0002.png" id="12_wu3ef"]
+[ext_resource type="Texture2D" uid="uid://5ds1e1eo76h4" path="res://sprites/background/pink_crystal_0003.png" id="13_v43m3"]
+[ext_resource type="Theme" uid="uid://dqla0yfrwjjib" path="res://font/font_theme.tres" id="16_1qlvl"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_trmqh"]
+frames = 4
+frame_0/texture = ExtResource("2_xadf8")
+frame_1/texture = ExtResource("3_4oqbm")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_66c01")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("2_12236")
+frame_3/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_f8ltk"]
+frames = 4
+frame_0/texture = ExtResource("1_3guv5")
+frame_1/texture = ExtResource("7_go8hp")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("8_uqvpp")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("9_1bahp")
+frame_3/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_6i34c"]
+frames = 4
+frame_0/texture = ExtResource("10_6r58q")
+frame_1/texture = ExtResource("11_8k3ro")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("12_wu3ef")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("13_v43m3")
+frame_3/duration = 1.0
+
+[node name="game_over_menu" type="CanvasLayer"]
+script = ExtResource("1_h4bw4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(538, 347.75)
+scale = Vector2(5.0625, 5.02419)
+texture = ExtResource("1_wpgpr")
+region_enabled = true
+region_rect = Rect2(128.148, 128.351, 64, 62.8148)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 434.0
+offset_top = 235.75
+offset_right = 634.0
+offset_bottom = 459.75
+
+[node name="Restart" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_30k37")
+text = "Restart"
+icon = SubResource("AnimatedTexture_trmqh")
+flat = true
+
+[node name="New game" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_30k37")
+text = "Main menu"
+icon = SubResource("AnimatedTexture_f8ltk")
+flat = true
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_30k37")
+text = "Exit"
+icon = SubResource("AnimatedTexture_6i34c")
+flat = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 455.0
+offset_top = 88.0
+offset_right = 647.0
+offset_bottom = 166.0
+theme = ExtResource("16_1qlvl")
+text = "GAME OVER"
+fit_content = true
+
+[connection signal="pressed" from="VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="VBoxContainer/New game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

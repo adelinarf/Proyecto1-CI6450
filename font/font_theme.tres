@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dqla0yfrwjjib"]
+
+[ext_resource type="FontFile" uid="uid://bnsgdpu6ucvoa" path="res://font/ARCADECLASSIC.TTF" id="1_exlq4"]
+
+[resource]
+default_font = ExtResource("1_exlq4")
+default_font_size = 38
+Label/font_sizes/font_size = 30
+Label/fonts/font = ExtResource("1_exlq4")

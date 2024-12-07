@@ -1,0 +1,108 @@
+[gd_scene load_steps=12 format=3 uid="uid://di0dgacrbi5co"]
+
+[ext_resource type="Texture2D" uid="uid://bfxkgr07oteh2" path="res://sprites/background/healthbarUnder.png" id="1_fvlmm"]
+[ext_resource type="Script" path="res://scenes/healthbar.gd" id="1_o6xj2"]
+[ext_resource type="Texture2D" uid="uid://cb8icoc0em6vi" path="res://sprites/background/healthbarProgress.png" id="2_nxh3s"]
+[ext_resource type="Theme" uid="uid://dqla0yfrwjjib" path="res://font/font_theme.tres" id="4_5m67j"]
+[ext_resource type="Theme" uid="uid://pmi4srbq52j6" path="res://font/smaller_font.tres" id="5_ebxtk"]
+[ext_resource type="PackedScene" uid="uid://cfwxlpn5yc5q4" path="res://scenes/menu.tscn" id="5_uhpa1"]
+[ext_resource type="Texture2D" uid="uid://dlp1lw8c1qeib" path="res://sprites/background/Metal Buttons Icons.png" id="6_86cnb"]
+[ext_resource type="PackedScene" uid="uid://dfc1h55dym0v3" path="res://scenes/info.tscn" id="8_wceoa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sx0u4"]
+atlas = ExtResource("6_86cnb")
+region = Rect2(288.152, 30.798, 31.9192, 33.9394)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpixw"]
+atlas = ExtResource("6_86cnb")
+region = Rect2(-0.510414, 255.889, 33.5353, 33.5353)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15of3"]
+atlas = ExtResource("6_86cnb")
+region = Rect2(192.317, 191.963, 31.4393, 31.4393)
+
+[node name="Healthbar" type="CanvasLayer"]
+script = ExtResource("1_o6xj2")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 936.0
+offset_top = 9.0
+offset_right = 1145.0
+offset_bottom = 50.0
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_fvlmm")
+texture_progress = ExtResource("2_nxh3s")
+tint_under = Color(0.278693, 0.79937, 1, 1)
+tint_progress = Color(0.540871, 0.452629, 0.179035, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 635.0
+offset_top = 9.0
+offset_right = 919.0
+offset_bottom = 49.0
+theme = ExtResource("4_5m67j")
+text = "SCORE"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+offset_left = 641.0
+offset_top = 61.0
+offset_right = 841.0
+offset_bottom = 101.0
+theme = ExtResource("5_ebxtk")
+text = "SCORE"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 944.0
+offset_top = 56.0
+offset_right = 1144.0
+offset_bottom = 96.0
+text = "SCORE"
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(0.481789, 0.481789, 0.481789, 1)
+offset_left = -1.0
+offset_top = -6.0
+offset_right = 71.0
+offset_bottom = 66.0
+icon = SubResource("AtlasTexture_sx0u4")
+flat = true
+expand_icon = true
+
+[node name="game_over_menu" parent="." instance=ExtResource("5_uhpa1")]
+visible = false
+
+[node name="info" type="Button" parent="."]
+modulate = Color(0.482353, 0.482353, 0.482353, 1)
+offset_left = 2.0
+offset_top = 580.0
+offset_right = 66.0
+offset_bottom = 647.0
+icon = SubResource("AtlasTexture_qpixw")
+flat = true
+expand_icon = true
+
+[node name="sound" type="Button" parent="."]
+modulate = Color(0.482353, 0.482353, 0.482353, 1)
+offset_left = 2.0
+offset_top = 72.0
+offset_right = 66.0
+offset_bottom = 139.0
+icon = SubResource("AtlasTexture_15of3")
+flat = true
+expand_icon = true
+
+[node name="info2" parent="." instance=ExtResource("8_wceoa")]
+visible = false
+position = Vector2(3, 3)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="info" to="." method="_on_info_mouse_entered"]
+[connection signal="mouse_exited" from="info" to="." method="_on_info_mouse_exited"]
+[connection signal="pressed" from="sound" to="." method="_on_sound_pressed"]

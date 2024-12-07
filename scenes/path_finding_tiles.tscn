@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxfybtsumqy6v"]
+
+[ext_resource type="Script" path="res://scenes/path_finding_tiles.gd" id="1_3ojb0"]
+[ext_resource type="Texture2D" uid="uid://dmhkadp6dpscm" path="res://sprites/background/wall.png" id="2_lrhcb"]
+
+[node name="PathFindingTiles" type="Node2D"]
+script = ExtResource("1_3ojb0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(175, 131)
+texture = ExtResource("2_lrhcb")

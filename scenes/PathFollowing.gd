@@ -5,7 +5,7 @@ var path : Path
  # The distance along the path to generate the 
 # target. Can be negative if the character is 
 # moving in the reverse direction.
-var pathOffset :float = 0.5
+var pathOffset :float = 5
 # The current position on the path.
 var currentParam : float
 var currentPos : float = -1
@@ -42,11 +42,41 @@ func getSteeringPrediction() -> SteeringOutput:
 
 	# Find the current position on the path.
 	currentParam = path.getParam(futurePos, currentPos)
-
+	pathOffset = 0
 	# Offset it.
 	var targetParam = fmod(currentParam + pathOffset,self.positions.size())
 	# Get the target position.
-	character.position += ( path.getPosition(targetParam) - character.position).normalized()
+	#character.position += ( path.getPosition(targetParam) - character.position).normalized()
+	#character.position = path.getPosition(targetParam)
 
 	# 2. Delegate to seek
 	return super.getSteering()
+	
+func getSteeringPrediction2(positionFinal) -> SteeringOutput:
+	# 1. Calculate the target to delegate to face.
+	# Find the predicted future location.
+	var pathOffset = 0
+	var futurePos = positionFinal + character.velocity * predictTime
+
+	# Find the current position on the path.
+	currentParam = path.getParam(futurePos, currentPos)
+
+	# Offset it.
+	var targetParam = fmod(currentParam+pathOffset ,self.positions.size())
+	# Get the target position.
+	#character.position += ( path.getPosition(targetParam) - character.position).normalized()
+	#character.position  += ( path.getPosition(targetParam) - character.position)
+	# 2. Delegate to seek
+	return super.getSteering2(positionFinal)
+
+var pos = 0
+func walk_all():
+	if self.pos >= self.positions.size():
+		return null
+	if character.position.distance_to(self.positions[self.pos]) < 90:
+		self.pos+=1
+	
+	if self.pos >= self.positions.size():
+		return null
+	
+	return self.getSteeringPrediction2(self.positions[self.pos])

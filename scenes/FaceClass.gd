@@ -18,3 +18,15 @@ func getSteering() -> SteeringOutput:
 	# 2. Delegate to align.
 	character.orientation = atan2(-direction.x,direction.y)
 	return super.getSteering()
+	
+func getSteeringToPos(finalPosition) -> SteeringOutput:
+	var result = SteeringOutput.new(Vector2(0.0,0.0),0.0)
+	var direction = finalPosition - character.position
+
+	# Check for a zero direction, and make no change if so.
+	if direction.length() == 0:
+		return SteeringOutput.new(Vector2(0.0,0.0),0.0)
+
+	# 2. Delegate to align.
+	character.orientation = atan2(-direction.x,direction.y)
+	return super.getSteering()

@@ -6,6 +6,8 @@ const SPEED = 0.0
 const JUMP_VELOCITY = -400.0
 var orientation : float = 0.0
 var maxSpeed = 10
+var currentHealth = 100
+
 #angulo en sentido antihorario desde el eje y (z)
 func update(linear : Vector2, angular: float, time: float) -> void:
 	if kinematic == true:
@@ -39,6 +41,13 @@ func polarToCard(d:float) -> Vector2:
 	var y = -cos(d*PI/180)
 	var x = sin(d*PI/180)
 	return Vector2(x,y)
+	
+func play_animation_recharge():
+	$AnimatedSprite2D.play("recharge")
+	await $AnimatedSprite2D.animation_looped
+	$AnimatedSprite2D.flip_h = false
+	$AnimatedSprite2D.play("still") 
+	
 
 func play_animation () -> void:
 	if velocity.x > 0:
@@ -143,6 +152,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		#orientation = (steering._angular()*10)
 		update(steering._lineal(), steering._angular(), time)
+		orientation = atan2(-velocity.x, velocity.y)
 	play_animation()
 	move_and_slide()
 	#$Arrow.rotation_degrees = - global_rotation_degrees
@@ -171,3 +181,44 @@ func change_target_pos(v : Vector2) -> void:
 func change_circle_pos(v : Vector2, radius : float) -> void:
 	$circle/Sprite2D.draw_circle(v,radius,'#ffff')
 	$circle.global_position = v
+
+@export var Hammer : PackedScene
+
+func detectCollisionCharacter(char,layer):
+	var detector = CollisionDetector.new(layer)
+	var ray = char.velocity
+	ray.normalized()
+	ray *= 3
+	var collision = detector.getCollision2(char.global_position, ray)
+	if collision.position != Vector2.ZERO:
+		return [true,collision.position]
+	return [false,null]
+	
+func detectCollisionWalls(char,layer):
+	var detector = CollisionDetector.new(layer)
+	var ray = char.velocity
+	ray.normalized()
+	ray *= 1
+	var collision = detector.getCollision(char.global_position, ray)
+	if collision.position != Vector2.ZERO:
+		return [true,collision.position]
+	return [false,null]
+
+
+func throw(dir : Vector2, rot):
+	var hammer = Hammer.instantiate()
+	#hammer.steering = steering.lineal
+	add_child(hammer)
+	hammer.steering.lineal = dir
+	hammer.steering.angular = rot
+	
+	hammer.transform = $Marker2D.transform
+	return hammer
+
+func recover():
+	currentHealth += 1
+	currentHealth = currentHealth*100/100
+
+func damage():
+	currentHealth -= 1
+	currentHealth = currentHealth*100/100

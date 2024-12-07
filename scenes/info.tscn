@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfc1h55dym0v3"]
+
+[ext_resource type="Texture2D" uid="uid://dn3ynl2wurqlx" path="res://sprites/menu/05 Border 01.png" id="1_325l5"]
+[ext_resource type="Theme" uid="uid://dqla0yfrwjjib" path="res://font/font_theme.tres" id="2_27kar"]
+[ext_resource type="Theme" uid="uid://pmi4srbq52j6" path="res://font/smaller_font.tres" id="3_ntydf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gcc8"]
+atlas = ExtResource("1_325l5")
+region = Rect2(204.539, 16.3899, 38.7751, 33.5353)
+
+[node name="info" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(578.197, 267.27)
+scale = Vector2(28.6212, 14.7109)
+texture = SubResource("AtlasTexture_7gcc8")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 509.0
+offset_top = 53.0
+offset_right = 625.0
+offset_bottom = 97.0
+theme = ExtResource("2_27kar")
+text = "PRESS"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 52.0
+offset_top = 113.0
+offset_right = 1094.0
+offset_bottom = 501.0
+theme = ExtResource("3_ntydf")
+text = "ENTER:                    Show/hide the vertexes and edges of the graph
+X :                                    Show/hide all existing lines
+SPACE BAR :     Delete all colors assigned to the enemies 
+L :                                   Show/hide the label with colors associated to the state machines and decision trees used by every enemy. It also displays the sprites associated with the tactical points. 
+S :                                   Differentiate every character according to the state machine or decision tree used to make a decision. 
+D :                                  Activate/deactivate the ability to die, if the \"CAN DIE?\" option is displayed as YES, the player can die once the health reaches a value equal to 0 or below.
+1,2,3,4,5 -       By pressing on these buttons, the enemies that use pathfinding can be the only characters visible.
+0 :                                 By pressing this button, all enemies are shown.
+W :                                 Show/hide all tactical node sprites."
