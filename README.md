@@ -1,6 +1,24 @@
 # Proyecto - CI6450
 
+## Objetivo y dinámicas del juego
 
+Llegar al pasillo final y lograr abrir el cofre. Se deben recoger monedas y evitar a los enemigos para mantener la vida del personaje sobre 0. Para poder ingresar al pasillo final se necesita un score mayor a 380.
+
+Algunos de los enemigos cuentan con vida, al acercarse al jugador y a la zona del suelo en rojo pierden la vida poco a poco, una vez su vida está lo suficientemente baja, se recargan en la zona cercana a las banderas. Por otro lado, la zona cercana a las velas es usada por los enemigos como una zona de visibilidad, para vigilar al jugador y la zona en donde se encuentran los jarrones es la zona utilizada por los enemigos para detenerse y lanzar proyectiles.
+
+En los pasillos que poseen barriles los enemigos pueden recargar su vida y además será difícil para ellos recorrer el camino de madera, por lo que prefieren pasar por el pasillo debajo de este (pero no siempre).
+
+La vida del jugador se pierde no solo al chocar con los enemigos, sino también al mantenerse junto a ellos, por lo que los enemigos deben ser evitados.
+
+## Última entrega
+
+Para la última entrega se mantuvieron las máquinas de estado de la entrega 3 y los árboles de decisión y máquinas de estado de la entrega 2 que no hacen uso del estado "Follow Path", ya que el pathfinding fue mejorado en la entrega 3. Para la última entrega existen 16 personajes enemigos.
+
+La última entrega puede correrse con F5 o a correr el proyecto de Godot. Para la corrida de este juego es necesario Godot 4. Hay un menú disponible que permite acceder a una versión jugable del juego y otra versión igual a la entrega 3 pero con los mismos enemigos que se incluyeron en la versión final. 
+
+Ambas modalidades cuentan con sonido, que puede ser desactivado con un botón a la izquierda de la pantalla. También existe un botón de menú que puede pausar el juego, reanudarlo, iniciar un juego nuevo y salir. 
+
+Para la versión de la entrega 3 se incluye la información de las funcionalidades con teclas en un botón en la esquina inferior izquierda. Al sobreponer el ratón sobre este botón se muestran las funcionalidades asignadas a cada una de las teclas.
 
 
 # Entregas anteriores
