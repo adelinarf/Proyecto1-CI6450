@@ -15,11 +15,11 @@ La vida del jugador se pierde no solo al chocar con los enemigos, sino también 
 
 ## Última entrega
 
-Para la última entrega se mantuvieron las máquinas de estado de la entrega 3 y los árboles de decisión y máquinas de estado de la entrega 2 que no hacen uso del estado "Follow Path", ya que el pathfinding fue mejorado en la entrega 3. Para la última entrega existen 16 personajes enemigos.
+Para la última entrega se mantuvieron las máquinas de estado de la entrega 3 y los árboles de decisión y máquinas de estado de la entrega 2 que no hacen uso del estado "Follow Path", ya que el pathfinding fue mejorado en la entrega 3. Para la última entrega existen 16 personajes enemigos. En total hay 10 máquinas de estado y árboles de decisión (algunos de los enemigos utilizan los mismos árboles o máquinas) y existe un enemigo que solo hace pathfinding. 
 
 La última entrega puede correrse con F5 o al correr el proyecto de Godot. Para la corrida de este juego es necesario Godot 4. Hay un menú disponible que permite acceder a una versión jugable del juego.
 
-El juego cuenta con sonido, que puede ser desactivado con un botón a la izquierda de la pantalla. También existe un botón de menú que puede pausar el juego, reanudarlo, iniciar un juego nuevo accediendo nuevamente al menú principal y salir. 
+El juego cuenta con sonido de fondo, que puede ser desactivado con un botón a la izquierda de la pantalla. También existe un botón de menú que puede pausar el juego, reanudarlo, iniciar un juego nuevo accediendo nuevamente al menú principal y salir. 
 
 
 # Entregas anteriores
