@@ -1,5 +1,8 @@
 # Proyecto - CI6450
 
+<img src="images/main.png" alt="mainimage"/>
+
+
 ## Objetivo y dinámicas del juego
 
 Llegar al pasillo final y lograr abrir el cofre. Se deben recoger monedas y evitar a los enemigos para mantener la vida del personaje sobre 0. Para poder ingresar al pasillo final se necesita un score mayor a 380.
@@ -14,11 +17,9 @@ La vida del jugador se pierde no solo al chocar con los enemigos, sino también 
 
 Para la última entrega se mantuvieron las máquinas de estado de la entrega 3 y los árboles de decisión y máquinas de estado de la entrega 2 que no hacen uso del estado "Follow Path", ya que el pathfinding fue mejorado en la entrega 3. Para la última entrega existen 16 personajes enemigos.
 
-La última entrega puede correrse con F5 o a correr el proyecto de Godot. Para la corrida de este juego es necesario Godot 4. Hay un menú disponible que permite acceder a una versión jugable del juego y otra versión igual a la entrega 3 pero con los mismos enemigos que se incluyeron en la versión final. 
+La última entrega puede correrse con F5 o al correr el proyecto de Godot. Para la corrida de este juego es necesario Godot 4. Hay un menú disponible que permite acceder a una versión jugable del juego.
 
-Ambas modalidades cuentan con sonido, que puede ser desactivado con un botón a la izquierda de la pantalla. También existe un botón de menú que puede pausar el juego, reanudarlo, iniciar un juego nuevo y salir. 
-
-Para la versión de la entrega 3 se incluye la información de las funcionalidades con teclas en un botón en la esquina inferior izquierda. Al sobreponer el ratón sobre este botón se muestran las funcionalidades asignadas a cada una de las teclas.
+El juego cuenta con sonido, que puede ser desactivado con un botón a la izquierda de la pantalla. También existe un botón de menú que puede pausar el juego, reanudarlo, iniciar un juego nuevo accediendo nuevamente al menú principal y salir. 
 
 
 # Entregas anteriores
