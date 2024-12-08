@@ -44,7 +44,7 @@ func polarToCard(d:float) -> Vector2:
 	
 func play_animation_recharge():
 	$AnimatedSprite2D.play("recharge")
-	await $AnimatedSprite2D.animation_looped
+	await $AnimatedSprite2D.animation_finished
 	$AnimatedSprite2D.flip_h = false
 	$AnimatedSprite2D.play("still") 
 	
