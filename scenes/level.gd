@@ -370,7 +370,7 @@ func getVertexes():
 	return vertex
 
 func changeWallsColor():
-	var nodes = getAvailableNodes("wall",1,694)
+	var nodes = getAvailableNodes("wall",1,870)
 	var modulate1 = nodes[0].modulate
 	for node in nodes:
 		node.modulate = modulate1
